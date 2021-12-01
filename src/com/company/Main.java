@@ -6,10 +6,12 @@ import java.io.IOException;
 import java.util.Scanner;
 import java.util.ArrayList;
 
+//mostly well named variables and good use of try catches and method named
+//could add some more comments
 
 public class Main {
 
-    private static File library = new File("library.txt");
+    private static File books = new File("library.txt");
 
 
     public static String getString(String prompt) {
@@ -26,15 +28,38 @@ public class Main {
     }
 
     public static void deleteLibrary(){
-        if (library.delete()) {
-            System.out.println("Deleted the file: " + library.getName());
+        if (books.delete()) {
+            System.out.println("Deleted the file: " + books.getName());
         } else {
             System.out.println("Failed to delete the file.");
         }
     }
 
     public static void addBook(){
+        ArrayList<String> newBook = new ArrayList<>();
+        newBook.add(bookDetails());
 
+
+        try {
+            FileWriter myWriter = new FileWriter(books.getName(), true); //True means append to file contents, False means overwrite
+            System.out.println("This is the contents of the file:");
+            myWriter.write(newBook.get(0)); // Overwrites everything in the file
+            myWriter.close();
+            System.out.println("Successfully wrote to the file.");
+        } catch (IOException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
+
+
+    }
+
+    public static String bookDetails(){
+        String bookTitle = getString("enter book title");
+        String bookISBN = getString("enter book ISBN");
+        String bookAuthor = getString("enter book Author");
+        String bookGenre = getString("enter book Genre");
+        return (bookTitle + "," + bookISBN + "," + bookAuthor + "," + bookGenre);
     }
 
     public static void menu(){
@@ -55,9 +80,7 @@ public class Main {
     }
 
     public static void main(String[] args) {
-
-
-
+    menu();
 
 
     }
