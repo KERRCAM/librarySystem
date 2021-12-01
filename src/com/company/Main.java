@@ -12,15 +12,15 @@ public class Main {
 
     public static String getString(String prompt) {
         Scanner input = new Scanner(System.in);
-        String string = "";
+        String strInput = "";
         try {
             System.out.println(prompt);
-            string = input.next();
+            strInput = input.next();
         } catch (Exception e) {
             System.out.println("incorrect input");
             System.out.println(e);
         }
-        return (string);
+        return (strInput);
     }
 
     public static void deleteLibrary(){
@@ -32,7 +32,20 @@ public class Main {
     }
 
     public static void menu(){
-        String action = getString("what would you like to (enter number of action): \n (1)-delete library- \n (2)-add book-");
+        boolean menu = true;
+        while (menu == true) {
+            String action = getString("what would you like to (enter number of action): \n (1)-delete library- \n (2)-add book-");
+            if (action.equals("1")) {
+                deleteLibrary();
+            }
+            if (action.equals("2")) {
+                addBook();
+            }
+        String menuAgain = getString("would you like to perform another action Y or N?");
+            if (menuAgain.equals("N")) {
+                menu = false;
+            }
+        }
     }
 
     public static void main(String[] args) {
