@@ -9,6 +9,8 @@ import java.util.ArrayList;
 
 public class Main {
 
+    private static File library = new File("library.txt");
+
 
     public static String getString(String prompt) {
         Scanner input = new Scanner(System.in);
@@ -24,7 +26,11 @@ public class Main {
     }
 
     public static void deleteLibrary(){
-
+        if (library.delete()) {
+            System.out.println("Deleted the file: " + library.getName());
+        } else {
+            System.out.println("Failed to delete the file.");
+        }
     }
 
     public static void addBook(){
@@ -186,14 +192,12 @@ public class Main {
         }
     }
 }
-*/
 
 
 
 
 
 
-/*
 package com.company;
 
         import java.util.ArrayList;
