@@ -43,7 +43,7 @@ public class Main {
         try {
             FileWriter myWriter = new FileWriter(books.getName(), true); //True means append to file contents, False means overwrite
             System.out.println("This is the contents of the file:");
-            myWriter.write(newBook.get(0)); // Overwrites everything in the file
+            myWriter.write(newBook.get(0) + "\n"); // Overwrites everything in the file
             myWriter.close();
             System.out.println("Successfully wrote to the file.");
         } catch (IOException e) {
