@@ -50,6 +50,48 @@ public class Main {
         }
     }
 
+    public static void removeBook(){
+
+    }
+
+    public static void findBook() {
+        boolean subMenu = true;
+        while (subMenu == true) {
+            String action = getString("what would you like to (enter number of action): \n (1)-search by title- \n (2)-search by ISBN- \n (3)-search by author- \n (4)-search by genre-");
+            if (action.equals("1")) {
+                searchByTitle();
+            }
+            if (action.equals("2")) {
+                searchByISBN();
+            }
+            if (action.equals("3")) {
+                searchByAuthor();
+            }
+            if (action.equals("4")) {
+                searchByGenre();
+            }
+            String menuAgain = getString("would you like to perform another action Y or N?");
+            if (menuAgain.equals("N")) {
+                subMenu = false;
+            }
+        }
+    }
+
+    private static void searchByTitle(){
+
+    }
+
+    private static void searchByISBN(){
+
+    }
+
+    private static void searchByAuthor(){
+
+    }
+
+    private static void searchByGenre(){
+
+    }
 
     public static void addBook(){
         ArrayList<String> newBook = new ArrayList<>();
@@ -76,7 +118,7 @@ public class Main {
     public static void menu(){
         boolean menu = true;
         while (menu == true) {
-            String action = getString("what would you like to (enter number of action): \n (1)-delete library- \n (2)-add book- \n (3)-view library-");
+            String action = getString("what would you like to (enter number of action): \n (1)-delete library- \n (2)-add book- \n (3)-view library- \n (4)-remove book- \n (5)-find book-");
             if (action.equals("1")) {
                 deleteLibrary();
             }
@@ -85,6 +127,12 @@ public class Main {
             }
             if (action.equals("3")) {
                 viewLibrary();
+            }
+            if (action.equals("4")) {
+                removeBook();
+            }
+            if (action.equals("5")) {
+                findBook();
             }
         String menuAgain = getString("would you like to perform another action Y or N?");
             if (menuAgain.equals("N")) {
