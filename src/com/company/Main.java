@@ -5,6 +5,9 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.FileReader;
 
 //mostly well named variables and good use of try catches and method named
 //could add some more comments
@@ -35,23 +38,31 @@ public class Main {
         }
     }
 
+    public static void viewLibrary(){
+        try (BufferedReader br = new BufferedReader(new FileReader("library.txt"))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                System.out.println(line);
+            }
+        }catch (Exception e){
+            System.out.println("error");
+            System.out.println(e);
+        }
+    }
+
+
     public static void addBook(){
         ArrayList<String> newBook = new ArrayList<>();
         newBook.add(bookDetails());
-
-
         try {
             FileWriter myWriter = new FileWriter(books.getName(), true); //True means append to file contents, False means overwrite
-            System.out.println("This is the contents of the file:");
-            myWriter.write(newBook.get(0) + "\n"); // Overwrites everything in the file
+            myWriter.write(newBook.get(0) + "\n"); // writes to file
             myWriter.close();
             System.out.println("Successfully wrote to the file.");
         } catch (IOException e) {
             System.out.println("An error occurred.");
             e.printStackTrace();
         }
-
-
     }
 
     public static String bookDetails(){
@@ -65,12 +76,15 @@ public class Main {
     public static void menu(){
         boolean menu = true;
         while (menu == true) {
-            String action = getString("what would you like to (enter number of action): \n (1)-delete library- \n (2)-add book-");
+            String action = getString("what would you like to (enter number of action): \n (1)-delete library- \n (2)-add book- \n (3)-view library-");
             if (action.equals("1")) {
                 deleteLibrary();
             }
             if (action.equals("2")) {
                 addBook();
+            }
+            if (action.equals("3")) {
+                viewLibrary();
             }
         String menuAgain = getString("would you like to perform another action Y or N?");
             if (menuAgain.equals("N")) {
@@ -180,9 +194,6 @@ public class Main {
         try {
             FileWriter myWriter = new FileWriter(myObj.getName(), false); //True means append to file contents, False means overwrite
             System.out.println("This is the contents of the file:");
-            for (int i = 0; i < 6; i++) {
-
-            }
             myWriter.write("Files in Java might be tricky, but it is fun enough!"); // Overwrites everything in the file
             myWriter.close();
             System.out.println("Successfully wrote to the file.");
