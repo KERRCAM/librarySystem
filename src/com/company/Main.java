@@ -15,6 +15,7 @@ public class Main {
     private static File books = new File("library.txt");
     private static ArrayList<String> fileContents = new ArrayList<>();
 
+
     public static String getString(String prompt) {
         Scanner input = new Scanner(System.in);
         String strInput = "";
@@ -88,15 +89,27 @@ public class Main {
 
     }
 
-    public static void searchByTitle(){
-        fileToList();
+    public static String[][] commaSeperatedStringsSplitter(){
+        String seperatedFileContents[][] = new String[fileContents.size()][5];
         for (int i = 0; i < fileContents.size(); i++) {
             String[] splitter = (fileContents.get(0)).split("[,]", 0);
+            int indexPos = 0;
             for (String currentPart : splitter) {
-                System.out.println(currentPart);
+                indexPos++;
+                seperatedFileContents[i][indexPos] = currentPart;
             }
         }
+        return(seperatedFileContents);
+    }
 
+    public static void searchByTitle(){
+        fileToList();
+        String seperatedFileContents[][] = commaSeperatedStringsSplitter();
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 4; j++) {
+                System.out.println(seperatedFileContents[i][j]);
+            }
+        }
     }
 
     public static void searchByISBN(){
