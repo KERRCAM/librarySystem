@@ -9,7 +9,7 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.FileReader;
 
-//
+
 public class Main {
 
     private static File books = new File("library.txt");
@@ -90,9 +90,13 @@ public class Main {
 
     public static void searchByTitle(){
         fileToList();
-        for (int i = 0; i < 3; i++) {
-            System.out.println(fileContents.get(i));
+        for (int i = 0; i < fileContents.size(); i++) {
+            String[] splitter = (fileContents.get(0)).split("[,]", 0);
+            for (String currentPart : splitter) {
+                System.out.println(currentPart);
+            }
         }
+
     }
 
     public static void searchByISBN(){
