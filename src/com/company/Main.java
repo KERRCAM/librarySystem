@@ -9,6 +9,14 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.FileReader;
 
+/*  2D array print test
+ for (int i = 0; i < 3; i++) {
+        for (int j = 0; j < 4; j++) {
+        System.out.println(seperatedFileContents[i][j]);
+        }
+    }
+*/
+
 
 public class Main {
 
@@ -86,7 +94,9 @@ public class Main {
             System.out.println("error");
             System.out.println(e);
         }
-
+        for (int i = 0; i < fileContents.size(); i++) {
+            System.out.println(fileContents.get(i));
+        }
     }
 
     public static String[][] commaSeperatedStringsSplitter(){
@@ -104,11 +114,20 @@ public class Main {
 
     public static void searchByTitle(){
         fileToList();
-        String seperatedFileContents[][] = commaSeperatedStringsSplitter();
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 4; j++) {
-                System.out.println(seperatedFileContents[i][j]);
+        String seperatedFileContents[][] = commaSeperatedStringsSplitter(); // this makes all 3 major lists equal to first major list ???????????
+        boolean bookFound = false;
+        String searchItem = getString("enter the title of the book you are looking for:");
+        for (int i = 0; i < fileContents.size() ; i++) {
+            if (searchItem.equals(seperatedFileContents[i][1])) { //need to fix that index 0 is null for some reason having index 1 is only temp fix
+                bookFound = true;
+                System.out.println("book found");
+                for (int k = 0; k < 5; k++) {
+                    System.out.println(seperatedFileContents[i][k]); // prints 3 times becuase currentsly all 3 major lists show as only 1st list
+                }
             }
+        }
+        if (bookFound == false) {
+            System.out.println("book not found");
         }
     }
 
