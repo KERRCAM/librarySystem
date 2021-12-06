@@ -13,7 +13,7 @@ import java.io.FileReader;
 public class Main {
 
     private static File books = new File("library.txt");
-
+    private static ArrayList<String> fileContents = new ArrayList<>();
 
     public static String getString(String prompt) {
         Scanner input = new Scanner(System.in);
@@ -75,19 +75,35 @@ public class Main {
         }
     }
 
-    private static void searchByTitle(){
+    public static void fileToList(){
+        try (BufferedReader br = new BufferedReader(new FileReader("library.txt"))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                fileContents.add(line);
+            }
+        }catch (Exception e){
+            System.out.println("error");
+            System.out.println(e);
+        }
 
     }
 
-    private static void searchByISBN(){
+    public static void searchByTitle(){
+        fileToList();
+        for (int i = 0; i < 3; i++) {
+            System.out.println(fileContents.get(i));
+        }
+    }
+
+    public static void searchByISBN(){
 
     }
 
-    private static void searchByAuthor(){
+    public static void searchByAuthor(){
 
     }
 
-    private static void searchByGenre(){
+    public static void searchByGenre(){
 
     }
 
