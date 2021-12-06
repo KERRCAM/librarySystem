@@ -58,7 +58,7 @@ public class Main {
     }
 
     public static void removeBook(){
-
+    // call ISBN search function get user to confirm correct book if correct remove from text file and rearrange text file with list to have no gaps if incorrect tell user and leave
     }
 
     public static void findBook() {
