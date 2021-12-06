@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.FileReader;
-//test
+
 /*  2D array print test
  for (int i = 0; i < 3; i++) {
         for (int j = 0; j < 4; j++) {
@@ -21,6 +21,7 @@ import java.io.FileReader;
 public class Main {
 
     private static File books = new File("library.txt");
+    private static File users = new File("users.txt");
     private static ArrayList<String> fileContents = new ArrayList<>();
 
 
@@ -84,8 +85,8 @@ public class Main {
         }
     }
 
-    public static void fileToList(){
-        try (BufferedReader br = new BufferedReader(new FileReader("library.txt"))) {
+    public static void fileToList(String file){
+        try (BufferedReader br = new BufferedReader(new FileReader(file))) {
             String line;
             while ((line = br.readLine()) != null) {
                 fileContents.add(line);
@@ -99,8 +100,8 @@ public class Main {
         }
     }
 
-    public static String[][] commaSeperatedStringsSplitter(){
-        String seperatedFileContents[][] = new String[fileContents.size()][5];
+    public static String[][] commaSeperatedStringsSplitter(int size){
+        String seperatedFileContents[][] = new String[fileContents.size()][size];
         for (int i = 0; i < fileContents.size(); i++) {
             String[] splitter = (fileContents.get(0)).split("[,]", 0);
             int indexPos = 0;
@@ -113,8 +114,8 @@ public class Main {
     }
 
     public static void searchByTitle(){
-        fileToList();
-        String seperatedFileContents[][] = commaSeperatedStringsSplitter(); // this makes all 3 major lists equal to first major list ???????????  ---- commaSeperatedStringsSplitter method does fill its list correctly issue is hwn list is put here on this line
+        fileToList("library.txt");
+        String seperatedFileContents[][] = commaSeperatedStringsSplitter(5); // this makes all 3 major lists equal to first major list ???????????  ---- commaSeperatedStringsSplitter method does fill its list correctly issue is hwn list is put here on this line
         boolean bookFound = false;
         String searchItem = getString("enter the title of the book you are looking for:");
         for (int i = 0; i < fileContents.size() ; i++) {
@@ -133,8 +134,8 @@ public class Main {
     }
 
     public static void searchByISBN(){
-        fileToList();
-        String seperatedFileContents[][] = commaSeperatedStringsSplitter(); // this makes all 3 major lists equal to first major list ???????????
+        fileToList("library.txt");
+        String seperatedFileContents[][] = commaSeperatedStringsSplitter(5); // this makes all 3 major lists equal to first major list ???????????
         boolean bookFound = false;
         String searchItem = getString("enter the ISBN of the book you are looking for:");
         for (int i = 0; i < fileContents.size() ; i++) {
@@ -153,8 +154,8 @@ public class Main {
     }
 
     public static void searchByAuthor(){
-        fileToList();
-        String seperatedFileContents[][] = commaSeperatedStringsSplitter(); // this makes all 3 major lists equal to first major list ???????????
+        fileToList("library.txt");
+        String seperatedFileContents[][] = commaSeperatedStringsSplitter(5); // this makes all 3 major lists equal to first major list ???????????
         boolean bookFound = false;
         String searchItem = getString("enter the Author of the book you are looking for:");
         for (int i = 0; i < fileContents.size() ; i++) {
@@ -173,8 +174,8 @@ public class Main {
     }
 
     public static void searchByGenre(){
-        fileToList();
-        String seperatedFileContents[][] = commaSeperatedStringsSplitter(); // this makes all 3 major lists equal to first major list ???????????
+        fileToList("library.txt");
+        String seperatedFileContents[][] = commaSeperatedStringsSplitter(5); // this makes all 3 major lists equal to first major list ???????????
         boolean bookFound = false;
         String searchItem = getString("enter the genre of the book you are looking for:");
         for (int i = 0; i < fileContents.size() ; i++) {
@@ -206,6 +207,34 @@ public class Main {
         }
     }
 
+    public static void signUp(){
+        ArrayList<String> newUser = new ArrayList<>();
+        newUser.add(userDetails("user"));
+        try {
+            FileWriter myWriter = new FileWriter(users.getName(), true); //True means append to file contents, False means overwrite
+            myWriter.write(newUser.get(0) + "\n"); // writes to file
+            myWriter.close();
+            System.out.println("Successfully wrote to the file.");
+        } catch (IOException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
+    }
+
+    public static void newAdmin(){
+        ArrayList<String> newUser = new ArrayList<>();
+        newUser.add(userDetails("admin"));
+        try {
+            FileWriter myWriter = new FileWriter(users.getName(), true); //True means append to file contents, False means overwrite
+            myWriter.write(newUser.get(0) + "\n"); // writes to file
+            myWriter.close();
+            System.out.println("Successfully wrote to the file.");
+        } catch (IOException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
+    }
+
     public static String bookDetails(){
         String bookTitle = getString("enter book title");
         String bookISBN = getString("enter book ISBN");
@@ -214,10 +243,24 @@ public class Main {
         return (bookTitle + "," + bookISBN + "," + bookAuthor + "," + bookGenre);
     }
 
-    public static void menu(){
+    public static String userDetails(String authority) {
+        String userEmail = getString("enter email");
+        String userPassword = getString("enter enter password");
+        String userAuthority = (authority);
+        return (userEmail + "," + userPassword + "," + userAuthority);
+    }
+
+    public static int logIn(){
+        int logInStatus = 2; // 0 = not logged in - 1 = user logged in - 2 = admin logged in
+
+        return(logInStatus);
+    }
+
+
+    public static void adminMenu(){
         boolean menu = true;
         while (menu == true) {
-            String action = getString("what would you like to (enter number of action): \n (1)-delete library- \n (2)-add book- \n (3)-view library- \n (4)-remove book- \n (5)-find book-");
+            String action = getString("what would you like to (enter number of action): \n (1)-delete library- \n (2)-add book- \n (3)-view library- \n (4)-remove book- \n (5)-find book- \n (6)-add new admin");
             if (action.equals("1")) {
                 deleteLibrary();
             }
@@ -233,6 +276,9 @@ public class Main {
             if (action.equals("5")) {
                 findBook();
             }
+            if (action.equals("6")) {
+                newAdmin();
+            }
         String menuAgain = getString("would you like to perform another action Y or N?");
             if (menuAgain.equals("N")) {
                 menu = false;
@@ -240,9 +286,43 @@ public class Main {
         }
     }
 
-    public static void main(String[] args) {
-    menu();
+    public static void userMenu(){
+        boolean menu = true;
+        while (menu == true) {
+            String action = getString("what would you like to (enter number of action): \n (1)-view library-  \n (2)-find book-");
+            if (action.equals("1")) {
+                viewLibrary();
+            }
+            if (action.equals("2")) {
+                findBook();
+            }
+            String menuAgain = getString("would you like to perform another action Y or N?");
+            if (menuAgain.equals("N")) {
+                menu = false;
+            }
+        }
     }
+
+    public static void main(String[] args) {
+        String option = getString("would you like to (enter number of action): \n (1)-log in- \n (2)-sign up-");
+        if (option.equals("1")) {
+            int logInStatus = logIn();
+            if (logInStatus == 0) {
+                System.out.println("username or password incorrect");
+            }
+            if (logInStatus == 1) {
+                System.out.println("user logged in");
+                userMenu();
+            }
+            if (logInStatus == 2) {
+                System.out.println("admin logged in");
+                adminMenu();
+            }if (option.equals("2")) {
+                signUp();
+            }
+        }
+    }
+
 }
 
 
