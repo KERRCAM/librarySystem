@@ -244,10 +244,74 @@ public class Main {
     }
 
     public static String userDetails(String authority) {
-        String userEmail = getString("enter email");
-        String userPassword = getString("enter enter password");
+        String userEmail = getEmail("enter email");
+        String userPassword = getPassword("enter enter password");
         String userAuthority = (authority);
         return (userEmail + "," + userPassword + "," + userAuthority);
+    }
+
+    public static String getEmail(String prompt) {
+        Scanner input = new Scanner(System.in);
+        String strInput = "";  
+        boolean validEmail = false;
+        while (validEmail == false) {
+            try {
+                System.out.println(prompt);
+                strInput = input.next();
+            } catch (Exception e) {
+                System.out.println("incorrect input");
+                System.out.println(e);
+            } 
+            if (strInput.contains("@") && strInput.contains(".com")) { 
+                validEmail = true;
+            }else {
+                System.out.println("invalid email entered. try again ( make sure email follows format text-'@'-text-'.com'");
+            }
+        }
+        return (strInput);
+    }
+
+    public static String getPassword(String prompt) {
+        Scanner input = new Scanner(System.in);
+        String strInput = "";
+        boolean validPassword = false;
+        while (validPassword == false) {
+            try {
+                System.out.println(prompt);
+                strInput = input.next();
+            } catch (Exception e) {
+                System.out.println("incorrect input");
+                System.out.println(e);
+            } 
+            boolean passwordCheck = checkPassword(strInput);
+            if (passwordCheck == true) {
+                validPassword = true;
+            }else {
+                System.out.println("invalid email entered. try again ( make sure email follows format text-'@'-text-'.com'");
+            }
+        }
+        return (strInput);
+    } 
+    
+    public static boolean checkPassword(String password){  
+        boolean valid = false;
+        char a;
+        int checks = 0;
+        for (a = 'a'; a <= 'z'; ++a) {
+            String strA = String.valueOf(a);
+            if (password.contains(strA)) {
+                checks++;
+                break;
+            }
+        }
+        for (int i = 0; i < 10; i++) {
+            String strA = String.valueOf(i);
+            if (password.contains(strA)) {
+                checks++;
+                break;
+            }
+        }
+        return (valid);
     }
 
     public static int logIn(){
