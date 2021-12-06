@@ -331,7 +331,7 @@ public class Main {
     }
 
     public static int logIn(){
-        int logInStatus = 2; // 0 = not logged in - 1 = user logged in - 2 = admin logged in
+        int logInStatus = 0; // 0 = not logged in - 1 = user logged in - 2 = admin logged in
         fileToList("users.txt");
         String seperatedFileContents[][] = commaSeperatedStringsSplitter(4); // temp fix
         boolean userFound = false;
@@ -339,16 +339,16 @@ public class Main {
         String username = getString("enter your user email");
         String password = getString("enter your user password");
         for (int i = 0; i < seperatedFileContents.length; i++) {
-            if (seperatedFileContents[i][0].equals(username)) {
+            if (seperatedFileContents[i][1].equals(username)) { // another temp index pos fix
                 userIndexPos = i;
                 userFound = true;
             }
         }
         if (userFound == true) {
-            if (seperatedFileContents[userIndexPos][1].equals(password)) {
+            if (seperatedFileContents[userIndexPos][2].equals(password)) { // temp index pos fix
                 logInStatus++;
             }
-            if (seperatedFileContents[userIndexPos][2].equals("admin")) {
+            if (seperatedFileContents[userIndexPos][3].equals("admin")) { // temp index pos fix
                 logInStatus++;
             }
         }
