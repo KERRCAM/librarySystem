@@ -255,7 +255,7 @@ public class Main {
 
     public static String userDetails(String authority) {
         String userEmail = getEmail("enter email");
-        String userPassword = getPassword("enter enter password");
+        String userPassword = getPassword("enter enter password (must contain at least 1 letter and 1 number and be 6 characters long");
         String userAuthority = (authority);
         return (userEmail + "," + userPassword + "," + userAuthority);
     }
@@ -297,7 +297,7 @@ public class Main {
             if (passwordCheck == true) {
                 validPassword = true;
             }else {
-                System.out.println("invalid email entered. try again ( make sure email follows format text-'@'-text-'.com'");
+                System.out.println("invalid password entered");
             }
         }
         return (strInput);
