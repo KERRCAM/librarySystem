@@ -131,6 +131,7 @@ public class Main {
         if (bookFound == false) {
             System.out.println("book not found");
         }
+        fileContentsWipe();
     }
 
     public static void searchByISBN(){
@@ -151,6 +152,7 @@ public class Main {
         if (bookFound == false) {
             System.out.println("book not found");
         }
+        fileContentsWipe();
     }
 
     public static void searchByAuthor(){
@@ -171,6 +173,7 @@ public class Main {
         if (bookFound == false) {
             System.out.println("book not found");
         }
+        fileContentsWipe();
     }
 
     public static void searchByGenre(){
@@ -190,6 +193,13 @@ public class Main {
         }
         if (bookFound == false) {
             System.out.println("book not found");
+        }
+        fileContentsWipe();
+    }
+
+    public static void fileContentsWipe(){
+        for (int i = 0; i < fileContents.size(); i++) {
+            fileContents.remove(0);
         }
     }
 
@@ -293,7 +303,7 @@ public class Main {
         return (strInput);
     } 
     
-    public static boolean checkPassword(String password){  
+    public static boolean checkPassword(String password){  // need to add more checks for special characters
         boolean valid = false;
         char a;
         int checks = 0;
@@ -311,12 +321,37 @@ public class Main {
                 break;
             }
         }
+        if (password.length() > 6) {
+            checks++;
+        }
+        if (checks == 3) {
+            valid = true;
+        }
         return (valid);
     }
 
     public static int logIn(){
         int logInStatus = 2; // 0 = not logged in - 1 = user logged in - 2 = admin logged in
-
+        fileToList("users.txt");
+        String seperatedFileContents[][] = commaSeperatedStringsSplitter(4); // temp fix
+        boolean userFound = false;
+        int userIndexPos = 0;
+        String username = getString("enter your user email");
+        String password = getString("enter your user password");
+        for (int i = 0; i < seperatedFileContents.length; i++) {
+            if (seperatedFileContents[i][0].equals(username)) {
+                userIndexPos = i;
+                userFound = true;
+            }
+        }
+        if (userFound == true) {
+            if (seperatedFileContents[userIndexPos][1].equals(password)) {
+                logInStatus++;
+            }
+            if (seperatedFileContents[userIndexPos][2].equals("admin")) {
+                logInStatus++;
+            }
+        }
         return(logInStatus);
     }
 
