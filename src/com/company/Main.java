@@ -122,6 +122,7 @@ public class Main {
                 bookFound = true;
                 System.out.println("book found");
                 for (int k = 0; k < 5; k++) {
+                    System.out.println("book information:");
                     System.out.println(seperatedFileContents[i][k]); // prints 3 times becuase currentsly all 3 major lists show as only 1st list
                 }
             }
@@ -132,15 +133,63 @@ public class Main {
     }
 
     public static void searchByISBN(){
-
+        fileToList();
+        String seperatedFileContents[][] = commaSeperatedStringsSplitter(); // this makes all 3 major lists equal to first major list ???????????
+        boolean bookFound = false;
+        String searchItem = getString("enter the ISBN of the book you are looking for:");
+        for (int i = 0; i < fileContents.size() ; i++) {
+            if (searchItem.equals(seperatedFileContents[i][2])) { //need to fix that index 0 is null for some reason having index 2 is only temp fix
+                bookFound = true;
+                System.out.println("book found");
+                for (int k = 0; k < 5; k++) {
+                    System.out.println("book information:");
+                    System.out.println(seperatedFileContents[i][k]); // prints 3 times becuase currentsly all 3 major lists show as only 1st list
+                }
+            }
+        }
+        if (bookFound == false) {
+            System.out.println("book not found");
+        }
     }
 
     public static void searchByAuthor(){
-
+        fileToList();
+        String seperatedFileContents[][] = commaSeperatedStringsSplitter(); // this makes all 3 major lists equal to first major list ???????????
+        boolean bookFound = false;
+        String searchItem = getString("enter the Author of the book you are looking for:");
+        for (int i = 0; i < fileContents.size() ; i++) {
+            if (searchItem.equals(seperatedFileContents[i][3])) { //need to fix that index 0 is null for some reason having index 3 is only temp fix
+                bookFound = true;
+                System.out.println("book found");
+                for (int k = 0; k < 5; k++) {
+                    System.out.println("book information:");
+                    System.out.println(seperatedFileContents[i][k]); // prints 3 times becuase currentsly all 3 major lists show as only 1st list
+                }
+            }
+        }
+        if (bookFound == false) {
+            System.out.println("book not found");
+        }
     }
 
     public static void searchByGenre(){
-
+        fileToList();
+        String seperatedFileContents[][] = commaSeperatedStringsSplitter(); // this makes all 3 major lists equal to first major list ???????????
+        boolean bookFound = false;
+        String searchItem = getString("enter the genre of the book you are looking for:");
+        for (int i = 0; i < fileContents.size() ; i++) {
+            if (searchItem.equals(seperatedFileContents[i][4])) { //need to fix that index 0 is null for some reason having index 4 is only temp fix
+                bookFound = true;
+                System.out.println("book found");
+                for (int k = 0; k < 5; k++) {
+                    System.out.println("book information:");
+                    System.out.println(seperatedFileContents[i][k]); // prints 3 times becuase currentsly all 3 major lists show as only 1st list
+                }
+            }
+        }
+        if (bookFound == false) {
+            System.out.println("book not found");
+        }
     }
 
     public static void addBook(){
