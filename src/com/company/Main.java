@@ -403,6 +403,7 @@ public class Main {
     }
 
     public static void main(String[] args) {
+        //newAdmin(); uncomment  for new computer that needs initial admin profile
         String option = getString("would you like to (enter number of action): \n (1)-log in- \n (2)-sign up-");
         if (option.equals("1")) {
             int logInStatus = logIn();
