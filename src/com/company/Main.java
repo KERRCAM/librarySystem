@@ -114,7 +114,7 @@ public class Main {
 
     public static void searchByTitle(){
         fileToList();
-        String seperatedFileContents[][] = commaSeperatedStringsSplitter(); // this makes all 3 major lists equal to first major list ???????????
+        String seperatedFileContents[][] = commaSeperatedStringsSplitter(); // this makes all 3 major lists equal to first major list ???????????  ---- commaSeperatedStringsSplitter method does fill its list correctly issue is hwn list is put here on this line
         boolean bookFound = false;
         String searchItem = getString("enter the title of the book you are looking for:");
         for (int i = 0; i < fileContents.size() ; i++) {
@@ -242,8 +242,6 @@ public class Main {
 
     public static void main(String[] args) {
     menu();
-
-
     }
 }
 
