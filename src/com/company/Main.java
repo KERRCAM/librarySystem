@@ -9,8 +9,6 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.FileReader;
 
-//mostly well named variables and good use of try catches and method named
-//could add some more comments
 
 public class Main {
 
