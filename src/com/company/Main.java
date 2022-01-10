@@ -21,8 +21,8 @@ import java.io.FileReader;
 
 public class Main {
 
-    private static File books = new File("library.txt");
-    private static File users = new File("users.txt");
+    public static File books = new File("library.txt");
+    public static File users = new File("users.txt");
     public static ArrayList<String> fileContents = new ArrayList<>();
 
 
@@ -63,28 +63,7 @@ public class Main {
     // call ISBN search function get user to confirm correct book if correct remove from text file and rearrange text file with list to have no gaps if incorrect tell user and leave
     }
 
-    public static void findBook() {
-        boolean subMenu = true;
-        while (subMenu == true) {
-            String action = getString("what would you like to (enter number of action): \n (1)-search by title- \n (2)-search by ISBN- \n (3)-search by author- \n (4)-search by genre-");
-            if (action.equals("1")) {
-                searchFunctions.searchByTitle();
-            }
-            if (action.equals("2")) {
-                searchFunctions.searchByISBN();
-            }
-            if (action.equals("3")) {
-                searchFunctions.searchByAuthor();
-            }
-            if (action.equals("4")) {
-                searchFunctions.searchByGenre();
-            }
-            String menuAgain = getString("would you like to perform another action Y or N?");
-            if (menuAgain.equals("N")) {
-                subMenu = false;
-            }
-        }
-    }
+
 
     public static void fileToList(String file){
         try (BufferedReader br = new BufferedReader(new FileReader(file))) {
@@ -115,19 +94,7 @@ public class Main {
     }
 
 
-    public static void addBook(){
-        ArrayList<String> newBook = new ArrayList<>();
-        newBook.add(bookDetails());
-        try {
-            FileWriter myWriter = new FileWriter(books.getName(), true); //True means append to file contents, False means overwrite
-            myWriter.write(newBook.get(0) + "\n"); // writes to file
-            myWriter.close();
-            System.out.println("Successfully wrote to the file.");
-        } catch (IOException e) {
-            System.out.println("An error occurred.");
-            e.printStackTrace();
-        }
-    }
+
 
     public static void signUp(){
         ArrayList<String> newUser = new ArrayList<>();
@@ -157,13 +124,7 @@ public class Main {
         }
     }
 
-    public static String bookDetails(){
-        String bookTitle = getString("enter book title");
-        String bookISBN = getString("enter book ISBN");
-        String bookAuthor = getString("enter book Author");
-        String bookGenre = getString("enter book Genre");
-        return (bookTitle + "," + bookISBN + "," + bookAuthor + "," + bookGenre);
-    }
+
 
     public static String userDetails(String authority) {
         String userEmail = getEmail("enter email");
@@ -276,7 +237,7 @@ public class Main {
                 deleteLibrary();
             }
             if (action.equals("2")) {
-                addBook();
+                newBookFunctions.addBook();
             }
             if (action.equals("3")) {
                 viewLibrary();
@@ -285,7 +246,7 @@ public class Main {
                 removeBook();
             }
             if (action.equals("5")) {
-                findBook();
+                searchFunctions.findBook();
             }
             if (action.equals("6")) {
                 newAdmin();
@@ -305,7 +266,7 @@ public class Main {
                 viewLibrary();
             }
             if (action.equals("2")) {
-                findBook();
+                searchFunctions.findBook();
             }
             String menuAgain = getString("would you like to perform another action Y or N?");
             if (menuAgain.equals("N")) {

@@ -2,7 +2,28 @@ package com.company;
 
 public class searchFunctions {
 
-
+    public static void findBook() {
+        boolean subMenu = true;
+        while (subMenu == true) {
+            String action = Main.getString("what would you like to (enter number of action): \n (1)-search by title- \n (2)-search by ISBN- \n (3)-search by author- \n (4)-search by genre-");
+            if (action.equals("1")) {
+                searchByTitle();
+            }
+            if (action.equals("2")) {
+                searchByISBN();
+            }
+            if (action.equals("3")) {
+                searchByAuthor();
+            }
+            if (action.equals("4")) {
+                searchByGenre();
+            }
+            String menuAgain = Main.getString("would you like to perform another action Y or N?");
+            if (menuAgain.equals("N")) {
+                subMenu = false;
+            }
+        }
+    }
 
     public static void searchByTitle(){
         Main.fileToList("library.txt");
