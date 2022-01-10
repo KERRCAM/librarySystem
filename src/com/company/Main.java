@@ -440,13 +440,13 @@ package com.company;
         import java.io.InputStreamReader;
         import java.io.FileReader;
 
-/*  2D array print test
+  2D array print test
  for (int i = 0; i < 3; i++) {
         for (int j = 0; j < 4; j++) {
         System.out.println(seperatedFileContents[i][j]);
         }
     }
-*/
+
 
 // FIND UNFINISHED METHOD - testing
 
