@@ -18,7 +18,7 @@ public class searchFunctions {
             if (action.equals("4")) {
                 searchByGenre();
             }
-            String menuAgain = Main.getString("would you like to perform another action Y or N?");
+            String menuAgain = Main.getString("would you like to perform another search Y or N?");
             if (menuAgain.equals("N")) {
                 subMenu = false;
             }
