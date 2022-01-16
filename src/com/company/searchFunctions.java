@@ -35,7 +35,7 @@ public class searchFunctions {
         }
         boolean bookFound = false;
         String searchItem = Main.getString("enter the title of the book you are looking for:");
-        for (int i = 0; i < Main.fileContents.size() ; i++) { // ISSUE SOURCE BREAKING THINGS IS THAT THIS LOOP DOESNT RUN AT ALL FOR NO REASON
+        for (int i = 0; i < Main.fileContents.size() ; i++) { // ISSUE SOURCE BREAKING THINGS IS THAT THIS LOOP DOESNT RUN AT ALL FOR NO REASON code has gone on strike
             if (searchItem.equals(seperatedFileContents[i][0])) { //need to fix that index 0 is null for some reason having index 1 is only temp fix
                 bookFound = true;
                 System.out.println("book found");
