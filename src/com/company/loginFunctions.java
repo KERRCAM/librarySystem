@@ -124,16 +124,16 @@ public class loginFunctions {
         String username = Main.getString("enter your user email");
         String password = Main.getString("enter your user password");
         for (int i = 0; i < seperatedFileContents.length; i++) {
-            if (seperatedFileContents[i][1].equals(username)) { // another temp index pos fix
+            if (seperatedFileContents[i][0].equals(username)) { // another temp index pos fix * not rn for all in this method
                 userIndexPos = i;
                 userFound = true;
             }
         }
         if (userFound == true) {
-            if (seperatedFileContents[userIndexPos][2].equals(password)) { // temp index pos fix
+            if (seperatedFileContents[userIndexPos][1].equals(password)) { // temp index pos fix
                 logInStatus++;
             }
-            if (seperatedFileContents[userIndexPos][3].equals("admin")) { // temp index pos fix
+            if (seperatedFileContents[userIndexPos][2].equals("admin")) { // temp index pos fix
                 logInStatus++;
             }
         }

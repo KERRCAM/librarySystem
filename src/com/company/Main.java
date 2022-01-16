@@ -86,8 +86,8 @@ public class Main {
             String[] splitter = (fileContents.get(i)).split("[,]", 0);
             int indexPos = 0;
             for (String currentPart : splitter) {
-                indexPos++;
                 seperatedFileContents[i][indexPos] = currentPart;
+                indexPos++;
             }
             //fileContents.clear();
         }
