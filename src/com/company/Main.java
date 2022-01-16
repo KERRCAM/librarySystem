@@ -83,13 +83,15 @@ public class Main {
     public static String[][] commaSeperatedStringsSplitter(int size){
         String seperatedFileContents[][] = new String[fileContents.size()][size];
         for (int i = 0; i < fileContents.size(); i++) {
-            String[] splitter = (fileContents.get(0)).split("[,]", 0);
+            String[] splitter = (fileContents.get(i)).split("[,]", 0);
             int indexPos = 0;
             for (String currentPart : splitter) {
                 indexPos++;
                 seperatedFileContents[i][indexPos] = currentPart;
             }
+            //fileContents.clear();
         }
+        fileContents.clear();
         return(seperatedFileContents);
     }
 
