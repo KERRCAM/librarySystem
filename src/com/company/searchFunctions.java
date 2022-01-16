@@ -34,9 +34,9 @@ public class searchFunctions {
             if (searchItem.equals(seperatedFileContents[i][1])) { //need to fix that index 0 is null for some reason having index 1 is only temp fix
                 bookFound = true;
                 System.out.println("book found");
+                System.out.println("book information:");
                 for (int k = 0; k < 5; k++) {
-                    System.out.println("book information:");
-                    System.out.println(seperatedFileContents[i][k]); // prints 3 times becuase currentsly all 3 major lists show as only 1st list
+                    System.out.println(seperatedFileContents[i][k]); // prints 3 times because currently all 3 major lists show as only 1st list
                 }
             }
         }
@@ -55,9 +55,9 @@ public class searchFunctions {
             if (searchItem.equals(seperatedFileContents[i][2])) { //need to fix that index 0 is null for some reason having index 2 is only temp fix
                 bookFound = true;
                 System.out.println("book found");
+                System.out.println("book information:");
                 for (int k = 0; k < 5; k++) {
-                    System.out.println("book information:");
-                    System.out.println(seperatedFileContents[i][k]); // prints 3 times becuase currentsly all 3 major lists show as only 1st list
+                    System.out.println(seperatedFileContents[i][k]); // prints 3 times because currently all 3 major lists show as only 1st list
                 }
             }
         }
@@ -76,9 +76,9 @@ public class searchFunctions {
             if (searchItem.equals(seperatedFileContents[i][3])) { //need to fix that index 0 is null for some reason having index 3 is only temp fix
                 bookFound = true;
                 System.out.println("book found");
+                System.out.println("book information:");
                 for (int k = 0; k < 5; k++) {
-                    System.out.println("book information:");
-                    System.out.println(seperatedFileContents[i][k]); // prints 3 times becuase currentsly all 3 major lists show as only 1st list
+                    System.out.println(seperatedFileContents[i][k]); // prints 3 times because currently all 3 major lists show as only 1st list
                 }
             }
         }
@@ -97,9 +97,9 @@ public class searchFunctions {
             if (searchItem.equals(seperatedFileContents[i][4])) { //need to fix that index 0 is null for some reason having index 4 is only temp fix
                 bookFound = true;
                 System.out.println("book found");
+                System.out.println("book information:");
                 for (int k = 0; k < 5; k++) {
-                    System.out.println("book information:");
-                    System.out.println(seperatedFileContents[i][k]); // prints 3 times becuase currentsly all 3 major lists show as only 1st list
+                    System.out.println(seperatedFileContents[i][k]); // prints 3 times because currently all 3 major lists show as only 1st list
                 }
             }
         }

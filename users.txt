@@ -1,1 +1,1 @@
-kc@gmail.com,passwordTest,admin
+kc,pass,admin
