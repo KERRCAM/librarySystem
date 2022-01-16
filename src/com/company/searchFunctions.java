@@ -27,7 +27,7 @@ public class searchFunctions {
 
     public static void searchByTitle(){
         Main.fileToList("library.txt");
-        String seperatedFileContents[][] = Main.commaSeperatedStringsSplitter(5); // this makes all 3 major lists equal to first major list ???????????  ---- commaSeperatedStringsSplitter method does fill its list correctly issue is hwn list is put here on this line
+        String seperatedFileContents[][] = Main.commaSeperatedStringsSplitter(5);
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 4; j++) {
                 System.out.println(seperatedFileContents[i][j]);
@@ -36,12 +36,12 @@ public class searchFunctions {
         boolean bookFound = false;
         String searchItem = Main.getString("enter the title of the book you are looking for:");
         for (int i = 0; i < Main.fileContents.size() ; i++) { // ISSUE SOURCE BREAKING THINGS IS THAT THIS LOOP DOESNT RUN AT ALL FOR NO REASON code has gone on strike
-            if (searchItem.equals(seperatedFileContents[i][0])) { //need to fix that index 0 is null for some reason having index 1 is only temp fix
+            if (searchItem.equals(seperatedFileContents[i][0])) {
                 bookFound = true;
                 System.out.println("book found");
                 System.out.println("book information:");
                 for (int k = 0; k < 5; k++) {
-                    System.out.println(seperatedFileContents[i][k]); // prints 3 times because currently all 3 major lists show as only 1st list
+                    System.out.println(seperatedFileContents[i][k]);
                 }
             }
         }
