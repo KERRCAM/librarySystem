@@ -1,12 +1,12 @@
 package com.company;
+
+import com.company.Objects.Book;
+import com.company.Objects.User;
+
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.Scanner;
 import java.util.ArrayList;
 import java.io.BufferedReader;
-import java.io.InputStreamReader;
 import java.io.FileReader;
 
 /*  2D array print test
@@ -17,13 +17,13 @@ import java.io.FileReader;
     }
 */
 
-// FIND UNFINISHED METHOD - testing
 
 public class Main {
 
     public static File books = new File("library.txt");
     public static File users = new File("users.txt");
-    public static ArrayList<String> fileContents = new ArrayList<>();
+    public static ArrayList<Book> fileContentsBooks = new ArrayList<>();
+    public static ArrayList<User> fileContentsUsers = new ArrayList<>();
 
 
     public static String getString(String prompt) {
@@ -39,7 +39,7 @@ public class Main {
         return (strInput);
     }
 
-    public static void deleteLibrary(){
+    public static void deleteLibrary() {
         if (books.delete()) {
             System.out.println("Deleted the file: " + books.getName());
         } else {
@@ -47,55 +47,54 @@ public class Main {
         }
     }
 
-    public static void viewLibrary(){
+    public static void viewLibrary() {
         try (BufferedReader br = new BufferedReader(new FileReader("library.txt"))) {
             String line;
             while ((line = br.readLine()) != null) {
                 System.out.println(line);
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             System.out.println("error");
             System.out.println(e);
         }
     }
 
-    public static void removeBook(){
-    // call ISBN search function get user to confirm correct book if correct remove from text file and rearrange text file with list to have no gaps if incorrect tell user and leave
+    public static void removeBook() {
+        // call ISBN search function get user to confirm correct book if correct remove from text file and rearrange text file with list to have no gaps if incorrect tell user and leave
     }
 
 
-
-    public static void fileToList(String file){
+    public static void fileToList(String file) {
         try (BufferedReader br = new BufferedReader(new FileReader(file))) {
             String line;
             while ((line = br.readLine()) != null) {
-                fileContents.add(line);
+                if (file.equals("library.txt")) {
+                    fileContentsBooks.add(commaSeperatedStringsSplitterBooks(line));//Creates book objects and adds to Arraylist
+                }
+                if(file.equals("users.txt")) {
+                    fileContentsUsers.add(commaSeperatedStringsSplitterUser(line));//Creates user objects and adds to Arraylist
+                }
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             System.out.println("error");
             System.out.println(e);
         }
-        for (int i = 0; i < fileContents.size(); i++) {
-            System.out.println(fileContents.get(i));
-        }
     }
 
-    public static String[][] commaSeperatedStringsSplitter(int size){
-        String seperatedFileContents[][] = new String[fileContents.size()][size];
-        for (int i = 0; i < fileContents.size(); i++) {
-            String[] splitter = (fileContents.get(i)).split("[,]", 0);
-            int indexPos = 0;
-            for (String currentPart : splitter) {
-                seperatedFileContents[i][indexPos] = currentPart;
-                indexPos++;
-            }
-            //fileContents.clear();
-        }
-        fileContents.clear();
-        return(seperatedFileContents);
+    public static Book commaSeperatedStringsSplitterBooks(String bookDetails) {
+        String[] splitter = bookDetails.split(",");
+        Book newBook = new Book(splitter[0],splitter[1],splitter[2], splitter[3]);
+        return (newBook);
     }
 
-    public static void adminMenu(){
+    public static User commaSeperatedStringsSplitterUser(String userDetails) {
+        String[] splitter = userDetails.split(",");
+        User newUser = new User(splitter[0],splitter[1],splitter[2]);
+        return (newUser);
+    }
+
+
+    public static void adminMenu() {
         boolean menu = true;
         while (menu == true) {
             String action = getString("what would you like to (enter number of action): \n (1)-delete library- \n (2)-add book- \n (3)-view library- \n (4)-remove book- \n (5)-find book- \n (6)-add new admin");
@@ -117,14 +116,14 @@ public class Main {
             if (action.equals("6")) {
                 loginFunctions.newAdmin();
             }
-        String menuAgain = getString("would you like to perform another action Y or N?");
+            String menuAgain = getString("would you like to perform another action Y or N?");
             if (menuAgain.equals("N")) {
                 menu = false;
             }
         }
     }
 
-    public static void userMenu(){
+    public static void userMenu() {
         boolean menu = true;
         while (menu == true) {
             String action = getString("what would you like to (enter number of action): \n (1)-view library-  \n (2)-find book-");
@@ -156,13 +155,23 @@ public class Main {
             if (logInStatus == 2) {
                 System.out.println("admin logged in");
                 adminMenu();
-            }if (option.equals("2")) {
+            }
+            if (option.equals("2")) {
                 loginFunctions.signUp();
             }
         }
     }
 
 }
+
+
+
+
+
+
+
+
+
 
 
 

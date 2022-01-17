@@ -118,22 +118,21 @@ public class loginFunctions {
     public static int logIn(){
         int logInStatus = 0; // 0 = not logged in - 1 = user logged in - 2 = admin logged in
         Main.fileToList("users.txt");
-        String seperatedFileContents[][] = Main.commaSeperatedStringsSplitter(4); // temp fix
         boolean userFound = false;
         int userIndexPos = 0;
         String username = Main.getString("enter your user email");
         String password = Main.getString("enter your user password");
-        for (int i = 0; i < seperatedFileContents.length; i++) {
-            if (seperatedFileContents[i][0].equals(username)) { // another temp index pos fix * not rn for all in this method
+        for (int i = 0; i < Main.fileContentsUsers.size(); i++) {
+            if (Main.fileContentsUsers.get(i).getUserEmail().equals(username)) { // another temp index pos fix * not rn for all in this method
                 userIndexPos = i;
                 userFound = true;
             }
         }
         if (userFound == true) {
-            if (seperatedFileContents[userIndexPos][1].equals(password)) { // temp index pos fix
+            if (Main.fileContentsUsers.get(userIndexPos).getUserPassword().equals(password)) { // temp index pos fix
                 logInStatus++;
             }
-            if (seperatedFileContents[userIndexPos][2].equals("admin")) { // temp index pos fix
+            if (Main.fileContentsUsers.get(userIndexPos).getUserAuthority().equals("admin")) { // temp index pos fix
                 logInStatus++;
             }
         }
